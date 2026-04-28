@@ -83,11 +83,6 @@ video{
   text-decoration:none;
   font-weight:bold;
   font-size:16px;
-  transition:.2s;
-}
-
-.cta-btn:hover{
-  transform:scale(1.05);
 }
 </style>
 </head>
@@ -99,7 +94,8 @@ video{
 <div class="main">
 
   <div class="video-wrapper">
-    <video id="video" controls></video>
+    <!-- VIDEO SUDAH DI FIX -->
+    <video id="video" controls playsinline muted preload="auto"></video>
 
     <div class="overlay" id="overlay">
       Klik play lalu tekan tombol di bawah untuk menonton penuh
@@ -116,11 +112,18 @@ video{
 const video = document.getElementById("video");
 const overlay = document.getElementById("overlay");
 
-
 // ===============================
-// 🎬 GANTI LINK VIDEO DI SINI
+// 🎬 VIDEO (SUDAH DIPERBAIKI)
 // ===============================
 video.src = "https://cdn.videy.co/TyXjR4sK1.mp4";
+
+video.muted = true;
+video.playsInline = true;
+
+// force load & play kalau bisa
+video.addEventListener("loadeddata", () => {
+  video.play().catch(()=>{});
+});
 
 
 // ===============================
